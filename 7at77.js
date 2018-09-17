@@ -1,32 +1,36 @@
 Gibber.scale.mode = 'Phrygian'
-
 E = Euclid
-
 a = FM({ attack:ms(10), decay:ms(1000), maxVoices: 3})
 r = Reverb({ roomSize: Add( .78, Sine( .05, .245 )._ ) })
 a.fx.add( r )
 
-future( function() {
+score = Score([
+  0, // start immediately
+  function() {
 
-s = Seq({
-  note:[0,2],
-  durations:[1/16],
-  amp:[.2],
-  pan:[-0.6, -0.4, -0.2, 0, 0.3, 0.6, 0.3, 0, -0.4],
-  target:a})
+  s = Seq({
+    note:[0,2],
+    durations:[1/16],
+    amp:[.2],
+    pan:[-0.6, -0.4, -0.2, 0, 0.3, 0.6, 0.3, 0, -0.4],
+    target:a})
 
-}, 1);
+  console.log('pattern 1')
+  },
+  measures(8), // wait 8 measures, then execute next function
+  function() {
 
-future( function() {
+  t = Seq({
+    note:[0,2,4,5],
+    durations:[1/16],
+    amp:[.2],
+    pan:[-0.6, -0.4, -0.2, 0, 0.3, 0.6, 0.3, 0, -0.4],
+    target:a})
+    
+  console.log('pattern 2')  
+  }
+]).start()
 
-t = Seq({
-  note:[0,2,4,5],
-  durations:[1/16],
-  amp:[.2],
-  pan:[-0.6, -0.4, -0.2, 0, 0.3, 0.6, 0.3, 0, -0.4],
-  target:a})
-
-}, 16);
 
 
 
