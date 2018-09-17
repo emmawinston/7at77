@@ -24,7 +24,7 @@ score = Score([
 
   console.log('pattern 1')
   },
-  measures(1), // wait 8 measures, then execute next function
+  measures(8), // wait 8 measures, then execute next function
   function() {
 
   t = Seq({
@@ -36,20 +36,21 @@ score = Score([
 
   console.log('pattern 2')
   },
-  measures(1), // wait 8 measures, then execute next function
+  measures(8), // wait 8 measures, then execute next function
   function() {
 
   u = Seq({
     note:[0,2,4,5],
     durations:[1/16],
     amp:[.1],
-    pan:[-0.6, -0.4, -0.2, 0, 0.3, 0.6, 0.3, 0, -0.4],
+    pan:[-1, -0.8, -0.6, -0.4, -0.2, 0, 0.3, 0.6, 0.3, 0, -0.4, -0.6, -0.8],
     target:b})
     
   console.log('pluck')
   },
   
-  measures(1),
+  measures(8),
+  
   function() {
 
   v = Seq({
@@ -59,15 +60,23 @@ score = Score([
     target:d})
     
   console.log('melody')
+  },
+  
+  measures(16),
+  
+  function() {
+    Master.fadeOut ( 4 )
+    console.log('fade to end')
   }
 ]).start()
 
+// this is almost exactly 3 minutes so far 
 
 
 
 
 
-
+// extra bits not in use yet
 
 d = Drums( 'xoxo')
 	.amp(.3)
