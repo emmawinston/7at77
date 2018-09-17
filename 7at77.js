@@ -1,7 +1,7 @@
 Gibber.scale.mode = 'Phrygian'
 E = Euclid
 a = FM({ attack:ms(10), decay:ms(1000), maxVoices: 3})
-r = Reverb({ roomSize: Add( .78, Sine( .05, .245 )._ ) })
+r = Reverb({ roomSize: Add( .78) })
 a.fx.add( r )
 
 score = Score([
