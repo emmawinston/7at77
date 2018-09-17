@@ -1,7 +1,8 @@
 Gibber.scale.mode = 'Phrygian'
 E = Euclid
-a = FM({ attack:ms(10), decay:ms(1000), maxVoices: 3})
-r = Reverb({ roomSize: Add( .78) })
+a = FM({ attack:ms(10), decay:ms(1000), maxVoices: 4})
+b = Pluck()
+r = Reverb({ roomSize: Add( .75, Sine( .05, .245 )._ ) })
 a.fx.add( r )
 
 score = Score([
@@ -12,22 +13,22 @@ score = Score([
     note:[0,2],
     durations:[1/16],
     amp:[.2],
-    pan:[-0.6, -0.4, -0.2, 0, 0.3, 0.6, 0.3, 0, -0.4],
+    pan:[-0.2, 0, 0.2, 0],
     target:a})
 
   console.log('pattern 1')
   },
-  measures(8), // wait 8 measures, then execute next function
+  measures(2), // wait 8 measures, then execute next function
   function() {
 
   t = Seq({
     note:[0,2,4,5],
     durations:[1/16],
-    amp:[.2],
+    amp:[.8],
     pan:[-0.6, -0.4, -0.2, 0, 0.3, 0.6, 0.3, 0, -0.4],
-    target:a})
+    target:b})
     
-  console.log('pattern 2')  
+  console.log('pattern 2')
   }
 ]).start()
 
