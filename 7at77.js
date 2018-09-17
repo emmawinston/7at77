@@ -3,10 +3,13 @@ E = Euclid
 aa = FM({ attack:ms(10), decay:ms(1000), maxVoices: 6})
 b = Pluck()
 //c is kalimba
-d = FM({ decay:ms(2000), maxVoices:4, index:2 })
+d = Synth2( 'pad2', { resonance:3 })
+
+// REVERB
 r = Reverb({ roomSize: Add( .75, Sine( .05, .245 )._ ) })
 a.fx.add( r )
-d.fx.add( r )
+b.fx.add( r )
+d.fx.add( Delay() )
 
 score = Score([
   0, // start immediately
@@ -45,13 +48,14 @@ score = Score([
     
   console.log('pluck')
   },
+  
   measures(1),
   function() {
 
   v = Seq({
     note:[7,6,4],
     durations:[1/2,1/2,2],
-    amp:[.1],
+    amp:[.4],
     target:d})
     
   console.log('melody')
