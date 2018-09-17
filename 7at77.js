@@ -1,9 +1,12 @@
 Gibber.scale.mode = 'Phrygian'
 E = Euclid
 aa = FM({ attack:ms(10), decay:ms(1000), maxVoices: 6})
-c = Pluck()
+b = Pluck()
+//c is kalimba
+d = FM({ decay:ms(2000), maxVoices:4, index:2 })
 r = Reverb({ roomSize: Add( .75, Sine( .05, .245 )._ ) })
 a.fx.add( r )
+d.fx.add( r )
 
 score = Score([
   0, // start immediately
@@ -18,7 +21,7 @@ score = Score([
 
   console.log('pattern 1')
   },
-  measures(8), // wait 8 measures, then execute next function
+  measures(1), // wait 8 measures, then execute next function
   function() {
 
   t = Seq({
@@ -30,7 +33,7 @@ score = Score([
 
   console.log('pattern 2')
   },
-  measures(8), // wait 8 measures, then execute next function
+  measures(1), // wait 8 measures, then execute next function
   function() {
 
   u = Seq({
@@ -41,6 +44,17 @@ score = Score([
     target:b})
     
   console.log('pluck')
+  },
+  measures(1),
+  function() {
+
+  v = Seq({
+    note:[7,6,4],
+    durations:[1/2,1/2,2],
+    amp:[.1],
+    target:d})
+    
+  console.log('melody')
   }
 ]).start()
 
@@ -55,8 +69,16 @@ d = Drums( 'xoxo')
 	.amp(.3)
 
 b = SoundFont( 'kalimba' )
-	.amp(.8)
+	.amp(.9)
 	.chord.seq( Rndi(0,8,3), E( 5,9,1/16 ) )
+
+function() {
+    
+  v = SoundFont( 'kalimba' )
+	.amp(.9)
+	.chord.seq( Rndi(0,7,3), E( 5,9,1/16 ) )
+    
+  }
 
 
 // 1732 bars in 77 minutes
