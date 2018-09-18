@@ -1,3 +1,4 @@
+Clock.bpm = 96
 Gibber.scale.mode = 'Phrygian'
 E = Euclid
 aa = FM({ attack:ms(10), decay:ms(1000), maxVoices: 6})
