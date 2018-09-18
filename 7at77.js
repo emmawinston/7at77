@@ -2,6 +2,7 @@ Clock.bpm = 96
 Gibber.scale.mode = 'Phrygian'
 E = Euclid
 aa = FM({ attack:ms(10), decay:ms(1000), maxVoices: 6})
+ab = FM({ attack:ms(10), decay:ms(1000), maxVoices: 6})
 b = Pluck()
 //c is kalimba
 d = Synth2( 'pad2', { resonance:3 })
@@ -25,7 +26,19 @@ score = Score([
 
   console.log('pattern 1')
   },
-  measures(8), // wait 8 measures, then execute next function
+  measures(4), // wait 8 measures, then execute next function
+  function() {
+
+  t = Seq({
+    note:[2,4],
+    durations:[1/16],
+    amp:[.02,.02,.02,.02,.02,.02,.02,.02,0,0,0,0,0,0,0,0],
+    pan:[0.2, 0.1, -0.2, -0.1],
+    target:ab})
+
+  console.log('pattern 1b')
+  },
+  measures(4), // wait 8 measures, then execute next function
   function() {
 
   t = Seq({
@@ -33,11 +46,11 @@ score = Score([
     durations:[1/16],
     amp:[.02],
     pan:[0.2, 0.1, -0.2, -0.1],
-    target:aa})
+    target:ab})
 
   console.log('pattern 2')
   },
-  measures(8), // wait 8 measures, then execute next function
+  measures(4), // wait 8 measures, then execute next function
   function() {
 
   u = Seq({
@@ -72,27 +85,3 @@ score = Score([
 ]).start()
 
 // this is almost exactly 3 minutes so far 
-
-
-
-
-
-// extra bits not in use yet
-
-d = Drums( 'xoxo')
-	.amp(.3)
-
-b = SoundFont( 'kalimba' )
-	.amp(.9)
-	.chord.seq( Rndi(0,8,3), E( 5,9,1/16 ) )
-
-function() {
-    
-  v = SoundFont( 'kalimba' )
-	.amp(.9)
-	.chord.seq( Rndi(0,7,3), E( 5,9,1/16 ) )
-    
-  }
-
-
-// 1732 bars in 77 minutes
