@@ -42,7 +42,7 @@ score = Score([
   function() {
 
   t = Seq({
-    note:[2,4],
+    note:[2,4,2,4,2,4,2,7,2,7,2,7,2,6,2],
     durations:[1/16],
     amp:[.02],
     pan:[0.2, 0.1, -0.2, -0.1],
